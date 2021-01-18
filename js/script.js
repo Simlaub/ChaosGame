@@ -1,6 +1,8 @@
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+canvas.height = Math.floor(Math.sqrt(Math.pow(canvas.width, 2)-Math.pow(canvas.width/2, 2)))
+
 let points = []
 let randomInitPoint;
 
@@ -30,7 +32,7 @@ function drawPoint(x, y, color) {
   }
 
   ctx.fillStyle = color;
-  ctx.fillRect(x, y, 2, 2)
+  ctx.fillRect(x, y, 1, 1)
 }
 
 function randomInt(min, max) {
@@ -45,8 +47,8 @@ function randomInt(min, max) {
 }
 
 function initPoints() {
-  points[0] = {x: 0, y: canvas.height-2}
-  points[1] = {x: canvas.width-2, y: canvas.height-2}
+  points[0] = {x: 0, y: canvas.height-1}
+  points[1] = {x: canvas.width-1, y: canvas.height-1}
   points[2] = {x: canvas.width/2, y: 0}
 
   for (var i = 0; i < 3; i++) {
