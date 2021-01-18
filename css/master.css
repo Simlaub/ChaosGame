@@ -1,0 +1,10 @@
+#grid {
+  display: grid;
+  place-items: center;
+}
+
+#canvas {
+  background-color: #2b2b2b;
+  height: 900px;
+  width: 900px;
+}
