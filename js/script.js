@@ -4,6 +4,12 @@ const ctx = canvas.getContext("2d");
 let points = []
 let randomInitPoint;
 
+//let firstX = 0;
+//let firstY = canvas.height;
+let firstX = randomInt(canvas.width-1);
+let firstY = randomInt(canvas.height-1);
+
+
 function drawPoint(x, y, color) {
   if (color == null) {
     switch (randomInitPoint) {
@@ -14,7 +20,7 @@ function drawPoint(x, y, color) {
         color = "blue";
         break;
       case 2:
-        color = "yellow";
+        color = "green";
         break;
       default:
         color = "white";
@@ -24,7 +30,7 @@ function drawPoint(x, y, color) {
   }
 
   ctx.fillStyle = color;
-  ctx.fillRect(x, y, 1, 1)
+  ctx.fillRect(x, y, 2, 2)
 }
 
 function randomInt(min, max) {
@@ -39,8 +45,8 @@ function randomInt(min, max) {
 }
 
 function initPoints() {
-  points[0] = {x: 0, y: canvas.height-1}
-  points[1] = {x: canvas.width-1, y: canvas.height-1}
+  points[0] = {x: 0, y: canvas.height-2}
+  points[1] = {x: canvas.width-2, y: canvas.height-2}
   points[2] = {x: canvas.width/2, y: 0}
 
   for (var i = 0; i < 3; i++) {
@@ -75,25 +81,23 @@ function getMiddle(ax, ay) {
 }
 
 function drawFirst() {
-  let randomX = randomInt(canvas.width-1);
-  let randomY = randomInt(canvas.height-1);
+  drawPoint(firstX, firstY);
 
-  drawPoint(randomX, randomY);
-
-  let newPoint = getMiddle(randomX, randomY);
+  let newPoint = getMiddle(firstX, firstY);
   drawPoint(newPoint.x, newPoint.y);
 
   draw(newPoint.x, newPoint.y)
 }
 
 function draw(x, y) {
-  for (var i = 0; i < 100; i++) {
-    drawPoint(x, y);
 
-    let newPoint = getMiddle(x, y);
-    drawPoint(newPoint.x, newPoint.y);
-  }
+  drawPoint(x, y);
+
+  let newPoint = getMiddle(x, y);
+  drawPoint(newPoint.x, newPoint.y);
+
   requestAnimationFrame(() => draw(newPoint.x, newPoint.y))
+  //draw(newPoint.x, newPoint.y)
 }
 
 initPoints();
